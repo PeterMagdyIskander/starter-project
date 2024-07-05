@@ -1,0 +1,65 @@
+import { createRouter, createWebHashHistory } from "vue-router";
+import store from "../store/index.js";
+import HomeView from "../views/HomeView.vue";
+
+const routes = [
+  {
+    path: "/",
+    name: "home",
+    component: HomeView,
+  },
+  {
+    path: "/QuestCenter",
+    name: "QuestCenter",
+    component: () => import("../views/QuestCenterView.vue"),
+  },
+  {
+    path: "/QuestCenter/:id",
+    name: "QuestCenterId",
+    component: () => import("../views/QuestMoreInfoView.vue"),
+  },
+  {
+    path: "/Battlefield",
+    name: "Battlefield",
+    component: () => import("../views/BattlefieldView.vue"),
+  },
+  {
+    path: "/Attendance/:uid",
+    name: "Attendance",
+    component: () => import("../views/AttendanceView.vue"),
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/MyQuest",
+    name: "MyQuest",
+    component: () => import("../views/MyQuestView.vue"),
+  },
+  {
+    path: "/QRCode",
+    name: "QRCode",
+    component: () => import("../views/QRCodeView.vue"),
+  },
+];
+
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
+});
+
+// Navigation guard
+router.beforeEach((to, from, next) => {
+  const user = store.state.user; // Get the user object from the state
+  const isAuthenticated = user !== null; // Check if the user is authenticated
+  const isAdmin = user && user.role === 'ADMIN'; // Check if the user has the admin role
+
+  if (to.matched.some((record) => record.meta.requiresAuth) && (!isAuthenticated || !isAdmin))  {
+    alert("not signed in")
+    next({
+      path: "/a",
+      query: { redirect: to.fullPath },
+    });
+  } else {
+    next();
+  }
+});
+export default router;

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="68" height="31" viewBox="0 0 68 31">
+  <g id="Group_334" data-name="Group 334" transform="translate(-293 -318)">
+    <g id="Group_332" data-name="Group 332" transform="translate(-1 91)">
+      <rect id="Rectangle_605" data-name="Rectangle 605" width="4" height="16" rx="2" transform="translate(294 242)" fill="#fee969"/>
+      <rect id="Rectangle_606" data-name="Rectangle 606" width="4" height="16" rx="2" transform="translate(302 242)" fill="#fee969"/>
+      <rect id="Rectangle_607" data-name="Rectangle 607" width="4" height="16" rx="2" transform="translate(310 242)" fill="#fee969"/>
+      <rect id="Rectangle_608" data-name="Rectangle 608" width="4" height="16" rx="2" transform="translate(318 242)" fill="#fee969"/>
+      <rect id="Rectangle_609" data-name="Rectangle 609" width="4" height="16" rx="2" transform="translate(326 242)" fill="#fee969"/>
+      <rect id="Rectangle_610" data-name="Rectangle 610" width="4" height="16" rx="2" transform="translate(334 242)" fill="#fee969"/>
+      <rect id="Rectangle_611" data-name="Rectangle 611" width="4" height="16" rx="2" transform="translate(342 242)" fill="#fff"/>
+      <rect id="Rectangle_612" data-name="Rectangle 612" width="4" height="16" rx="2" transform="translate(350 242)" fill="#fff"/>
+      <rect id="Rectangle_613" data-name="Rectangle 613" width="4" height="16" rx="2" transform="translate(358 242)" fill="#fff"/>
+    </g>
+    <text id="Medium" transform="translate(293 327)" fill="#e5e5e5" font-size="10" font-family="PTMono-Regular, PT Mono"><tspan x="0" y="0">Medium</tspan></text>
+  </g>
+</svg>
