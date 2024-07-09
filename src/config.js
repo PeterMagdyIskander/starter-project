@@ -1,10 +1,10 @@
 export const config = {
     firebase: {
-        apiKey: "AIzaSyCnIjIUKkKkK4Dsa8DbTDfvpXEuRe_LN0s",
-        authDomain: "level-up-ea099.firebaseapp.com",
-        projectId: "level-up-ea099",
-        storageBucket: "level-up-ea099.appspot.com",
-        messagingSenderId: "368424115435",
-        appId: "1:368424115435:web:956693aef333486ffef2ae"
+        apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+        authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+        projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+        storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+        messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+        appId: process.env.VUE_APP_FIREBASE_APP_ID
     }
-}
+};
