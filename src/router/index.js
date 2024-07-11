@@ -39,6 +39,12 @@ const routes = [
     name: "QRCode",
     component: () => import("../views/QRCodeView.vue"),
   },
+  {
+    path: "/AddQuest",
+    name: "AddQuest",
+    component: () => import("../views/AddQuestView.vue"),
+    // meta: { requiresAuth: true },
+  },
 ];
 
 const router = createRouter({
@@ -53,9 +59,8 @@ router.beforeEach((to, from, next) => {
   const isAdmin = user && user.role === 'ADMIN'; // Check if the user has the admin role
 
   if (to.matched.some((record) => record.meta.requiresAuth) && (!isAuthenticated || !isAdmin))  {
-    alert("not signed in")
     next({
-      path: "/a",
+      path: "/",
       query: { redirect: to.fullPath },
     });
   } else {

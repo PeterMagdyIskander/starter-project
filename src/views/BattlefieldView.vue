@@ -1,5 +1,5 @@
 <template>
-    <div class="attack-container">
+    <div>
         <app-header :title="'Rise Of The Kingdom'" :subtitle="'Battlefield'"></app-header>
         
     </div>
@@ -11,7 +11,7 @@ import { collection, getFirestore, onSnapshot, doc, updateDoc, increment } from 
 import AppHeader from '@/components/Shared/AppHeader.vue';
 
 export default {
-    name: "attack-view",
+    name: "battlefield-view",
     computed: {
         ...mapGetters(['getUser']),
     },
@@ -28,69 +28,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.attack-container {
-    height: 100%;
-    width: 100%;
-    position: relative;
-}
-.planets-battlefield {
-    height: inherit;
-    position: relative;
-}
 
-#NW {
-    position: absolute;
-    width: 50%;
-    height: 45%;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-}
-
-#NE {
-    position: absolute;
-    width: 50%;
-    height: 45%;
-    left: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-}
-
-#SW {
-    position: absolute;
-    width: 50%;
-    height: 45%;
-    top: 45%;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-}
-
-#SE {
-    position: absolute;
-    width: 50%;
-    height: 45%;
-    top: 45%;
-    left: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-}
-
-#SE,
-#SW {
-    border-top: 1px solid #3E8898;
-}
-
-#NE,
-#SE {
-    border-left: 1px solid #3E8898;
-}
 </style>
