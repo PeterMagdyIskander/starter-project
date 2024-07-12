@@ -34,17 +34,17 @@ export default createStore({
         let newUser = false;
         onSnapshot(userCollectionReference, snapshot => {
           allUsers = snapshot.docs.map(doc => doc.id);
-          if (!allUsers.includes(res.user.uid)) {
+          if (!allUsers.includes(res.user.uid)) {//new user
             newUser = true;
             let userDB = {}
             setDoc(doc(firestore, "users", res.user.uid), {
               name: res.user.displayName,
             }, { merge: true });
-            let user = {
-              name: res.user.displayName,
-            }
-            commit('setUser', user)
           }
+          let user = {
+            name: res.user.displayName,
+          }
+          commit('setUser', user)
         })
         
         commit('setFailed', false)
