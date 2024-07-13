@@ -26,27 +26,37 @@ export default createStore({
       commit('setLoading', true)
       const provider = new GoogleAuthProvider();
       signInWithPopup(getAuth(), provider).then(res => {
-        
+
         const firestore = getFirestore();
         const userCollectionReference = collection(firestore, 'users');
 
         let allUsers = [];
-        let newUser = false;
         onSnapshot(userCollectionReference, snapshot => {
           allUsers = snapshot.docs.map(doc => doc.id);
-          if (!allUsers.includes(res.user.uid)) {//new user
-            newUser = true;
-            let userDB = {}
-            setDoc(doc(firestore, "users", res.user.uid), {
+          let newUser = !allUsers.includes(res.user.uid);
+          let user = null;
+          if (newUser) {
+            user = {
+              uid: res.user.uid,
               name: res.user.displayName,
-            }, { merge: true });
+              assignedQuestId: "",
+            }
+            setDoc(doc(firestore, "users", res.user.uid), user, { merge: true });
+            commit('setUser', user)
+          } else {
+            const userDoc = doc(userCollectionReference, res.user.uid)
+            onSnapshot(userDoc, snapshot => {
+              const data = snapshot.data();
+              user = {
+                uid: res.user.uid
+                , ...data
+              }
+              commit('setUser', user)
+            })
+
           }
-          let user = {
-            name: res.user.displayName,
-          }
-          commit('setUser', user)
         })
-        
+
         commit('setFailed', false)
       }).catch(err => {
         console.error(err)

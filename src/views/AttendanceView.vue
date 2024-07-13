@@ -1,7 +1,4 @@
 <template>
-    <div class="attendance-container">
-        ADDING ATTENDANCE
-    </div>
 </template>
 <script>
 import { collection, getFirestore, onSnapshot, doc, updateDoc, increment } from 'firebase/firestore';
@@ -18,7 +15,6 @@ export default {
     methods: {
         ...mapActions(['login', 'setQuests']),
         addAttendance(uid) {
-            alert(uid)
             const firestore = getFirestore();
             const userCollectionReference = collection(firestore, 'users');
             const userDoc = doc(userCollectionReference, uid);
@@ -33,23 +29,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.attendance-container {
-    text-align: center;
-    padding: 50px;
-}
-
-.drop-down {
-    height: 300px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    margin-bottom: 30px;
-
-    &-item {
-        width: 100%;
-        padding: 5px;
-        margin: 5px;
-        font-size: 14px;
-        font-family: 'ptmono';
-    }
-}
 </style>

@@ -14,7 +14,6 @@
             <li class="sidemenu__item" @click="closeMenu"> <router-link to="/Battlefield">Battlefield</router-link></li>
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/MyQuest">My Quest</router-link></li>
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/QRCode">My QR Code</router-link></li>
-            <li class="sidemenu__item" @click="closeMenu"><router-link to="/TeamRoles">Roles</router-link></li>
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/AddQuest">Add Quest</router-link></li>
           </ul>
         </div>

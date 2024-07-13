@@ -35,6 +35,29 @@
                     </div>
                 </div>
             </div>
+
+            <div class="input-container">
+                <h3 class="title">Category</h3>
+
+                <div class="difficulty">
+                    <div class="difficulty-item" @click="form.category = 'physical'"
+                        :class="{ 'selected': form.category == 'physical' }">
+                        <img src="@/assets/attack-icon.svg" alt="attack-icon">
+                    </div>
+                    <div class="difficulty-item" @click="form.category = 'social'"
+                        :class="{ 'selected': form.category == 'social' }">
+                        <img src="@/assets/defend-icon.svg" alt="quest-center-icon">
+
+                    </div>
+                    <div class="difficulty-item" @click="form.category = 'spiritual'"
+                        :class="{ 'selected': form.category == 'spiritual' }">
+                        <img src="@/assets/heal-icon.svg" alt="my-quest-icon">
+                    </div>
+                </div>
+            </div>
+
+
+
             <div class="submit-container">
                 <button type="submit" :disabled="!isFormValid"
                     :class="{ 'disabled': !isFormValid }">SUBMIT</button>
@@ -59,6 +82,7 @@ export default {
                 this.form.title &&
                 this.form.description &&
                 this.form.difficulty &&
+                this.form.category &&
                 this.form.reward !== null
             );
         }
@@ -72,6 +96,7 @@ export default {
                 title: '',
                 description: '',
                 difficulty: 0,
+                category:'',
                 reward: null,
             },
         };
@@ -86,6 +111,8 @@ export default {
                     description: this.form.description,
                     difficulty: this.form.difficulty,
                     reward: this.form.reward,
+                    category:this.form.category,
+                    assignedTo: [],
                 });
                 alert('Quest added successfully!');
                 this.resetForm();

@@ -34,5 +34,9 @@ button {
     background-color: #444a5c;
     padding: 10px;
     font-family: 'ptmono';
+    
+}
+.active {
+    background-color: #162041;
 }
 </style>

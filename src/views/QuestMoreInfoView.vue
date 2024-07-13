@@ -35,6 +35,7 @@ export default {
     methods: {
         ...mapActions(['updateUser']),
         accept() {
+            console.log(this.getUser.uid,this.$route.params.id)
             const firestore = getFirestore();
             const userCollectionReference = collection(firestore, 'users');
             const questCollectionReference = collection(firestore, 'quests');

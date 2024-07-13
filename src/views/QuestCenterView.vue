@@ -23,15 +23,15 @@ export default {
             showingRole: "",
             options: [
                 {
-                    name: "Attacker",
+                    name: "Physical",
                     id: 1,
                 },
                 {
-                    name: "Defender",
+                    name: "Social",
                     id: 2,
                 },
                 {
-                    name: "Healer",
+                    name: "Spiritual",
                     id: 3,
                 }
             ]
@@ -39,12 +39,12 @@ export default {
     },
     methods: {
         handleOptionSelection(id) {
-            this.questList = this.getQuests.filter(quest => quest.role === this.options.filter(option => option.id === id)[0].name.toLocaleLowerCase() && !quest.assignedTo.includes(this.getUser.uid))
+            this.questList = this.getQuests.filter(quest => quest.category === this.options.filter(option => option.id === id)[0].name.toLocaleLowerCase() && !quest.assignedTo.includes(this.getUser.uid))
         }
     },
     created() {
-        this.showingRole = this.getUser.role.toLowerCase();
-        this.questList = this.getQuests.filter(quest => quest.role === this.showingRole && !quest.assignedTo.includes(this.getUser.uid))
+        this.showingRole = 'Physical';
+        this.questList = this.getQuests.filter(quest => quest.category === this.showingRole && !quest.assignedTo.includes(this.getUser.uid))
     }
 }
 </script>

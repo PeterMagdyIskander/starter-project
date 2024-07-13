@@ -15,20 +15,17 @@
             <div class="more-info">
                 <div> <img src="@/assets/gold-icon.svg" alt="exp icon">
                 </div>
-                <p>{{ quest.gold }}</p>
+                <p>{{ quest.reward }}</p>
             </div>
+
             <div class="more-info">
                 <div>
-                    <p>EXP</p>
+                    <p>Category</p>
                 </div>
-                <p>{{ quest.exp }}</p>
+                <p>{{ quest.category }}</p>
             </div>
-            <div class="more-info">
-                <div>
-                    <p>Role</p>
-                </div>
-                <p>{{ quest.role }}</p>
-            </div>
+            
+        
         </div>
         <div class="quest-info-container-details" v-else>
             <p class="title">Please select a quest first</p>
@@ -38,9 +35,11 @@
 
 <script>
 import AppHeader from '../Shared/AppHeader.vue'
+
 export default {
   components: { AppHeader },
     name: "quest-more-info",
+    
     props: {
         quest: {
             type: Object,
@@ -83,6 +82,7 @@ p {
 
 .more-info {
     display: flex;
+    align-items: center;
     column-gap: 30px;
     margin: 7px auto;
 
@@ -93,7 +93,7 @@ p {
 
     & p:nth-child(1) {
         font-family: 'pressstart2p';
-        font-size: 18px;
+        font-size: 12px;
         color: #F09455;
     }
 
@@ -118,4 +118,5 @@ p {
 .difficulty {
     text-align: left !important;
 }
+
 </style>
