@@ -13,10 +13,17 @@ export default {
   computed: mapGetters(['getUser', 'getQuests', 'getLoading', 'getFailed', mapActions]),
   methods: {
     ...mapActions(['login', 'setQuests']),
-    signIn() {
+    async signIn() {
       if (!this.getLoading) {
-        this.login();
-        this.setQuests();
+        const redirect = this.$route.query.redirect || '/';
+        try {
+          await this.login();
+          this.$router.push(redirect);
+        } catch (error) {
+          console.error('Login failed', error);
+        } finally {
+          this.setQuests();
+        }
       }
     }
   },

@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
-import { collection, doc, getFirestore, onSnapshot, updateDoc, setDoc, increment } from 'firebase/firestore';
+import { collection, doc, getFirestore, onSnapshot, setDoc } from 'firebase/firestore';
+
 export default createStore({
   state: {
     user: null,
@@ -21,43 +22,45 @@ export default createStore({
     setFailed: (state, failed) => (state.failed = failed)
   },
   actions: {
-    login({ commit }) {
+    async login({ commit }) {
       commit('setFailed', true)
       commit('setLoading', true)
       const provider = new GoogleAuthProvider();
-      signInWithPopup(getAuth(), provider).then(res => {
+      return signInWithPopup(getAuth(), provider).then(res => {
 
         const firestore = getFirestore();
         const userCollectionReference = collection(firestore, 'users');
 
         let allUsers = [];
-        onSnapshot(userCollectionReference, snapshot => {
-          allUsers = snapshot.docs.map(doc => doc.id);
-          let newUser = !allUsers.includes(res.user.uid);
-          let user = null;
-          if (newUser) {
-            user = {
-              uid: res.user.uid,
-              name: res.user.displayName,
-              assignedQuestId: "",
-            }
-            setDoc(doc(firestore, "users", res.user.uid), user, { merge: true });
-            commit('setUser', user)
-          } else {
-            const userDoc = doc(userCollectionReference, res.user.uid)
-            onSnapshot(userDoc, snapshot => {
-              const data = snapshot.data();
+        return new Promise((resolve, reject) => {
+          onSnapshot(userCollectionReference, snapshot => {
+            allUsers = snapshot.docs.map(doc => doc.id);
+            let newUser = !allUsers.includes(res.user.uid);
+            let user = null;
+            if (newUser) {
               user = {
-                uid: res.user.uid
-                , ...data
+                uid: res.user.uid,
+                name: res.user.displayName,
+                assignedQuestId: "",
               }
-              commit('setUser', user)
-            })
-
-          }
-        })
-
-        commit('setFailed', false)
+              setDoc(doc(firestore, "users", res.user.uid), user, { merge: true }).then(() => {
+                commit('setUser', user);
+                resolve(user);
+              }).catch(reject);
+            } else {
+              const userDoc = doc(userCollectionReference, res.user.uid)
+              onSnapshot(userDoc, snapshot => {
+                const data = snapshot.data();
+                user = {
+                  uid: res.user.uid,
+                  ...data
+                }
+                commit('setUser', user);
+                resolve(user);
+              }, reject);
+            }
+          }, reject);
+        });
       }).catch(err => {
         console.error(err)
         commit('setFailed', true)

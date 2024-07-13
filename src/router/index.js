@@ -30,7 +30,7 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-    path: "/questSubmission/:uid",
+    path: "/QuestSubmission/:uid",
     name: "QuestSubmission",
     component: () => import("../views/QuestSubmissionView.vue"),
     meta: { requiresAuth: true },

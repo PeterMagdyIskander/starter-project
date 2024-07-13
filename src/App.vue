@@ -1,5 +1,5 @@
 <template>
-  <div id="sidemenu" v-if="getUser!=null && getUser?.role!='ADMIN'">
+  <div id="sidemenu" v-if="getUser!=null">
     <button class="sidemenu__btn" v-on:click="navOpen = !navOpen" v-bind:class="{ active: navOpen }">
       <span class="top"></span>
       <span class="mid"></span>

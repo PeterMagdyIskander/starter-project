@@ -14,7 +14,7 @@ export default {
             required: true,
         },
         subtitle: {
-            type: Boolean,
+            type: String,
             required: true,
         },
 
