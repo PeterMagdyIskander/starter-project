@@ -69,7 +69,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { db } from '@/firebase';
 import { collection, getFirestore, onSnapshot, doc, updateDoc, increment,addDoc } from 'firebase/firestore';
 import AppHeader from '@/components/Shared/AppHeader.vue';
 
