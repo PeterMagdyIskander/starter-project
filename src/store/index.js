@@ -42,6 +42,8 @@ export default createStore({
                 uid: res.user.uid,
                 name: res.user.displayName,
                 assignedQuestId: "",
+                isTeamLead: false,
+                email: res.user.email
               }
               setDoc(doc(firestore, "users", res.user.uid), user, { merge: true }).then(() => {
                 commit('setUser', user);
@@ -53,6 +55,7 @@ export default createStore({
                 const data = snapshot.data();
                 user = {
                   uid: res.user.uid,
+                  email: res.user.email,
                   ...data
                 }
                 commit('setUser', user);

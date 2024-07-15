@@ -51,6 +51,12 @@ const routes = [
     component: () => import("../views/AddQuestView.vue"),
     // meta: { requiresAuth: true },
   },
+  {
+    path: "/AddTeam",
+    name: "AddTeam",
+    component: () => import("../views/AddTeamView.vue"),
+    // meta: { requiresAuth: true },
+  },
 ];
 
 const router = createRouter({
