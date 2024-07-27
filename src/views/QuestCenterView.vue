@@ -44,7 +44,7 @@ export default {
     },
     created() {
         this.showingRole = 'Physical';
-        this.questList = this.getQuests.filter(quest => quest.category === this.showingRole && !quest.assignedTo.includes(this.getUser.uid))
+        this.questList = this.getQuests.filter(quest => quest.category === this.showingRole.toLowerCase() && !quest.assignedTo.includes(this.getUser.uid))
     }
 }
 </script>
